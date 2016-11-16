@@ -4,14 +4,14 @@
 
 typedef struct node
 {   
-	char name[20]; /* 姓名 */  
-	char idnumber[40]; /* 身份证号*/  
-	char zhanghao[40]; /* 账号*/  
-	long keyword; /* 密码 */  
-	struct node *next;//指针指向下一个 
+	char name[20];
+	char idnumber[40];
+	char zhanghao[40];
+	long keyword;
+	struct node *next;
 }add_list;  
 struct person
-{ /* 定义一个结构备用 */  
+{
 	char name[20];  
 	char idnumber [50];  
 	char zhanghao[50];  
@@ -19,7 +19,8 @@ struct person
 };  
 FILE *fp;  
 add_list *tail;
-add_list*head; /* 定义链表尾节点指针和头指针 */  
+add_list*head;
+
 /* 从文件中读出数据生成链表,如果文件不存在,生成空链表 */  
 add_list *load(char filename[])  
 { 
@@ -81,13 +82,13 @@ void insert(add_list **head)  //不懂
 	printf("\n请输入身份证号:"); scanf("%s",new1->idnumber);  
 	printf("\n请输入账号:"); scanf("%s",new1->zhanghao);  
 	printf("\n请输入密码:"); scanf("%ld",&new1->keyword);  
-	if(*head==NULL) /* 表头为空时 */  
+	if(*head==NULL)
 	{ 
 		*head=new1;  
 		new1->next=NULL;  
 		tail=new1;  
 	}  
-	else /* 插入到表尾 */  
+	else
 	{ 
 		tail->next=new1;  
 		new1->next=NULL;  
@@ -96,7 +97,8 @@ void insert(add_list **head)  //不懂
 printf("输入完成,按回车键返回......");  
 getchar();  
 getchar();  
-}  
+}
+
 /* 将链表中的内容保存到指定文件中 */  
 void save(add_list *head,char filename[])  
 { 
@@ -124,8 +126,8 @@ else
 	printf("保存成功,按回车键返回......");  
 	getchar();
 	getchar();  
-}  
-/* 显示内容 */  
+}
+
 void display(add_list *head)  
 { 
 	add_list *p;  
@@ -186,6 +188,7 @@ void shunxu (add_list *head)
 	display(head);
 	
 }
+
 /* 按姓名查询记录 */  
 int search(add_list *head)  
 { 
@@ -219,14 +222,14 @@ int delete1(add_list **head)
 	q=p=*head;  
 	while(p!=NULL)  
 	{ 
-		if(strcmp(name,p->name)==0) /* 找到要删除的人 */  
+		if(strcmp(name,p->name)==0)
 		{ 
 			printf("姓名:\t\t身份证号:\t\t密码:\t\t账号:\n");  
 			printf("%s\t\t%s\t\t%ld\t\t%s\n",p->name,p->idnumber,p->keyword,p->zhanghao);  
-			printf("真的要删除吗?(Y:是,N:否)\n"); /* 征求意见(删&不删) */  
+			printf("真的要删除吗?(Y:是,N:否)\n");
 			getchar();
 			c=getchar();  
-			if(c=='y'||c=='Y') /* 删除 */  
+			if(c=='y'||c=='Y') 
 			{ 
 				if(p==*head)  
 					*head=p->next;  
@@ -237,14 +240,14 @@ int delete1(add_list **head)
 					free(t);  
 					flag=1;  
 			}  
-			else /* 不删,跳过 */  
+			else
 			{ 
 				q=p;  
 				p=p->next;  
 				flag=1;  
 			}  
 		}  
-		else /* 没找到,继续 */  
+		else 
 		{
  			q=p;  
 			p=p->next;  
@@ -274,7 +277,7 @@ int menu_select()
 	while(c<'1'||c>'7');  
 return c;  
 }  
-/* 主函数 */  
+
 int main(void)  
 {
 	char filename[20];  
