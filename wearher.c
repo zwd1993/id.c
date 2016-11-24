@@ -1,5 +1,17 @@
-# include<stdio.h>
+#include<stdio.h>
+#include<winsock2.h>
 #pragma comment(lib, "ws2_32.lib") 
+
+typedef struct WSAData{
+	WORD wVersion;
+	WORD wHighVersion;
+	char szDescription[WSADESCRIPTION_LEN+1];
+	char szSystemStatus[WSASYS_STATUS_LEN+1];
+	unsigned short iMaxSockets;
+	unsigned short iMaxudpDg;
+	char FAR *lpVendorInfo;
+}WSADATA, *LPWSADATA;
+
 void ReadPage(char* host)  
 {  
     WSADATA data;  
@@ -53,8 +65,10 @@ void ReadPage(char* host)
     printf("读取网页内容成功，已保存在recieved.txt中");  
     return ;  
 }  
-void main()
+int main ()
 {
-ReadPage();
-}
-
+	ReadPage("www.weather.com.cn/data/cityinfo/101010100.html");
+	return 0;
+ }
+ 
+ 
